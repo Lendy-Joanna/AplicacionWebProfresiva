@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../images/logo.jpg">
+    
+    <script src="https://js.stripe.com/v3/"></script>
+    <title>Ubicacion</title>
+    <link rel="stylesheets" href="../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- GPS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Zona Cero</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" datatarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" ariaexpanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+        <a class="nav-link" href="../index.html">Inicio<span class="sronly"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/streaming.html">Mi Streaming</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/extras.html">Extras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Suscripción para contenido exclusivo
+            <form action="checkout" method="POST">
+                <script 
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_51HhtYfIoCf79dHKpC5WgrxisgCedBtJ724qUkI4Gnsg0yFG6gp6hgW29gwN5tCidk8x1ca7SQI5X10sLxM9bCEce00ogSIUUdI"
+                data-amount="472"
+                data-name="Zona Cero"
+                data-description="Contenido especial para suscriptores"
+                data-image="../images/logo.jpg"
+                data-locale="auto">
+              </script>
+              </form>
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="../pages/acercade.html">Acerca de</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="../pages/ubicacion.html">Dónde encontrarme</a>
+        </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar"
+      aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0"
+      type="submit">Buscar</button>
+        </form>
+        </div>
+     </nav>
+  
+  <style>
+    body {
+      background-color: rgb(21, 21, 47);
+    }
+    #map-template{
+    height: 60%;
+    width: 60%;
+    top: 20%;
+    position: absolute;
+    background: #333333;
+   } 
+   #datTienda{
+    width: 30%;
+    height: 15%;
+    float: right;
+    margin-right: 3%;
+    margin-left: 5%;
+    margin-top: 3%;
+    background-color: rgba(107, 221, 145, 0.678);
+    color: black;
+    font-size: 18px;
+    text-align: justify;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    padding: 5px 4px 5px 4px;
+  }.twitter-follow-button{
+  position: fixed;
+  bottom: 230px;
+  right: 26px;
+  width: 60px;
+  z-index: 1000;
+}
+.twitter-follow-button img{
+  width: 100%;
+  height: auto;
+}
+.appMessenger{
+  position: fixed;
+  bottom: 165px;
+  right: 26px;
+  width: 60px;
+  z-index: 1000;
+}
+.appMessenger img{
+  width: 100%;
+  height: auto;
+}
+.appWhatsapp{
+  position: fixed;
+  right: 26px;
+  bottom: 100px;
+  width: 60px;
+  z-index: 1000;
+}
+.appWhatsapp img{
+  width: 100%;
+  height: auto;
+}
+footer #derec{
+ font-style: italic;
+ font-size: medium;
+ color: honeydew;
+ width: 25%;
+ float: left;
+}
+footer #izq{ 
+  float: right;
+  font-style: italic;
+  font-size: medium;
+  color: honeydew;
+  width: 20%;
+}
+
+  </style>
+    
+  </head> 
+
+  <body>
+      <div id="map-template"></div>
+
+      <div id="datTienda" class="container-content">
+        <p>Si aparte de mi contenido quisieras comprar algo de mi mercancía, <br>
+          con gusto te espero en mi tienda física y será 
+          un placer atenderte.<br>
+          Por el momento solo hago entregas locales.<br>
+          Disponibilidad en un horario de 15:00-19:00<br>
+          Abierto los días Jueves, Sábado y Domingo.<br>
+          Ubicada en la calle Vicente Guerreo Col. Insurgentes #6°A
+        </p>
+      </div>
+
+    <!-- GPS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="../js/main.js"></script>
+
+  
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+  </body>
+
+  <footer class="footer">
+    
+    <a class="appWhatsapp" target="_blanck" href="https://api.whatsapp.com/send?phone=524181307868&text=Hola!&nbsp;me&nbsp;pueden&nbsp;apoyar?">
+	    <img src="/images/icon-whatsapp.png" title="Enviar mensaje por Whatsapp" alt="Whatsapp">
+    </a>
+
+    <a class="appMessenger" target="_blanck" href="http://m.me/lendyjoanna.rodriguez">
+      <img src="/images/icon-messenger.png" title="Enviar mensaje por Messenger" alt="Messenger">
+    </a>
+
+    <a class="twitter-follow-button" target="_blanck" href="https://twitter.com/@alien_EspacialL">
+      <img src="/images/icon-twitter.png" title="Sígueme por Twitter" alt="Twitter">
+    </a>
+    <div id="derec"><br><br><br><p>Proyecto propiedad de Lendy ©2022 </p></div>
+    
+    <div id="izq">
+    <p>Número de contacto: 418 1020 269</p>
+    <a class="nav-link" href="../pages/ubicacion.html">Ciudad de Dolores Hidalgo C.I.N., Gto., México</a>
+    </div>
+  </footer>
+
+</html>
